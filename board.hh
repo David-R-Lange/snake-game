@@ -1,15 +1,14 @@
-#include <string>
-#include <iostream>
-#include "snake.hh"
-#include "food.hh"
+#include <vector>
 
 class Board{
   private:
-    std::size_t m_boardSize;
-    std::vector<std::vector<int>> m_board;
+    int m_boardSize;
+    std::vector<std::vector<char>> m_board;
 
   public:
-    Board(std::size_t);
+    Board(int);
     ~Board();
-    void drawBoard(std::string);
+    int getBoardSize();
+    std::vector<std::vector<char>> getBoard();
+    void setBoard(std::vector<std::vector<char>>&);
 };

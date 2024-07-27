@@ -2,22 +2,23 @@
 
 using namespace std;
 
-Board::Board(size_t size) {
+Board::Board(int size) {
   m_boardSize = size;
   vector<int> row(m_boardSize, 0);
-  vector<vector<int>> m_board(m_boardSize, row);
+  vector<vector<char>> m_board(m_boardSize, row);
 }
 
 Board::~Board() = default;
 
-void Board::drawBoard(string playerName) {
-  system("clear");
+int Board::getBoardSize() {
+  return this->m_boardSize;
+}
 
-  for(size_t i = 0; i < this->m_board.size(); ++i) {
-    for(size_t j = 0; j < this->m_board[i].size(); ++j) {
-      cout << this->m_board[i][j];
-    }
-    cout << endl;
-  }
+vector<vector<char>> Board::getBoard() {
+  return this->m_board;
+}
 
+void Board::setBoard(vector<vector<char>> &board) {
+  this->m_board = board;
+}
 }
