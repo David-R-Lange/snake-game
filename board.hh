@@ -10,12 +10,12 @@ class Board{
     std::vector<std::vector<char>> m_board;
 
   public:
-    Board(int, int, char);
+    Board(int&, int&, char);
     ~Board();
     int getHeight();
     int getWidth();
     char getSymbol();
-    void setOnBoard(int, int, char);
+    void setOnBoard(int&, int&, char);
     void showBoard();
     void clearBoard();
 };
