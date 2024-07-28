@@ -1,13 +1,17 @@
+#ifndef FOOD_HH
+#define FOOD_HH
+
 #include <stdlib.h>
 
 class Food {
   private:
-    size_t m_posX;
-    size_t m_posY;
+    int m_posX;
+    int m_posY;
 
   public:
-    Food(size_t, size_t);
+    Food(int, int);
     ~Food();
-    size_t getPosX();
-    size_t getPosY();
+    int getPosX();
+    int getPosY();
 };
+#endif // !FOOD_HH

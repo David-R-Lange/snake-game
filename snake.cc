@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Snake::Snake(size_t posX, size_t posY, size_t snakeSize) {
+Snake::Snake() {
   m_posX = posX;
   m_posY = posY;
   m_snakeSize = snakeSize;
@@ -31,10 +31,10 @@ void Snake::grow() {
   this->m_snakeSize++;
 }
 
-size_t Snake::getPosX() {
+int Snake::getPosX() {
   return this->m_posX;
 }
 
-size_t Snake::getPosY() {
+int Snake::getPosY() {
   return this->m_posY;
 }

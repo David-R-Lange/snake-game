@@ -2,17 +2,17 @@
 
 using namespace std;
 
-Food::Food(size_t x, size_t y) {
+Food::Food(int x, int y) {
   m_posX = x;
   m_posY = y;
 }
 
 Food::~Food() = default;
 
-size_t Food::getPosX() {
+int Food::getPosX() {
   return this->m_posX;
 }
 
-size_t Food::getPosY() {
+int Food::getPosY() {
   return this->m_posY;
 }

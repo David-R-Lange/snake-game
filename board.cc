@@ -1,24 +1,49 @@
 #include "board.hh"
+#include <iostream>
 
-using namespace std;
-
-Board::Board(int size) {
-  m_boardSize = size;
-  vector<int> row(m_boardSize, 0);
-  vector<vector<char>> m_board(m_boardSize, row);
+Board::Board(int height, int width, char symbol) {
+  m_height = height;
+  m_width = width;
+  m_symbol = symbol;
+  std::vector<std::vector<char>> m_board(m_height, std::vector<char> (m_width, symbol));
 }
 
 Board::~Board() = default;
 
-int Board::getBoardSize() {
-  return this->m_boardSize;
+int Board::getHeight() {
+  return this->m_height;
 }
 
-vector<vector<char>> Board::getBoard() {
-  return this->m_board;
+int Board::getWidth() {
+  return this->m_width;
 }
 
-void Board::setBoard(vector<vector<char>> &board) {
-  this->m_board = board;
+char Board::getSymbol() {
+  return this->m_symbol;
 }
+
+
+void Board::setOnBoard(int x, int y, char input) {
+  this->m_board[x][y] = input;
+}
+
+void Board::showBoard() {
+  for(int i = 0; i < m_height; ++i) {
+    for(int j = 0; j <= m_width; ++j) {
+      std::cout << m_board[i][j] << " ";
+    }
+    std::cout << std::endl;
+  }
+}
+
+void Board::clearBoard() {
+  for(int i = 0; i < m_height; ++i) {
+    for(int j = 0; j <= m_width; ++j) {
+
+      if(j == 0 || j == m_width) {
+        m_board[i][j] = '|';
+      }
+
+    }
+  }
 }

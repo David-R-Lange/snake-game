@@ -1,20 +1,28 @@
+#ifndef SNAKE_HH
+#define SNAKE_HH
+
 #include <vector> 
 
 class Snake{
   private:
-    std::size_t m_posX;
-    std::size_t m_posY;
-    std::size_t m_snakeSize;
-    std::vector<std::size_t> m_snakeTailX;
-    std::vector<std::size_t> m_snakeTailY;
+    char m_headSymbol;
+    char m_tailSymbol;
+    int m_headX;
+    int m_headY;
+    int m_snakeSize;
+    std::vector<int> m_body; // Data Structure to store the Snake Body in memory. m_body[0] == head, else tail
+    enum m_snakeDirection { STOP = 0, LEFT, RIGHT, UP, DOWN };
+    m_snakeDirection dir;
 
   public:
-    enum SnakeDirection { STOP = 0, LEFT, RIGHT, UP, DOWN };
-    Snake(std::size_t x, std::size_t y, std::size_t len);
+    Snake(char, char, int, int, int);
     ~Snake();
+    char getHeadSymbol();
+    char getTailSymbol();
+    int getHeadX();
+    int getHeadY();
+    void setSnakeOnBoard(Board&);
     void move(SnakeDirection);
-    void grow();
-    std::size_t getPosX();
-    std::size_t getPosY();
-    int getSnakeDirection();
+    bool foundFood(Food&);
 };
+#endif // !SNAKE_HH
