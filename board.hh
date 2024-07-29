@@ -2,6 +2,7 @@
 #define BOARD_HH
 
 #include <vector>
+#include "pos.h"
 
 class Board{
   private:
@@ -15,7 +16,7 @@ class Board{
     int getHeight();
     int getWidth();
     char getSymbol();
-    void setOnBoard(int&, int&, char);
+    void setOnBoard(position, char);
     void showBoard();
     void clearBoard();
 };

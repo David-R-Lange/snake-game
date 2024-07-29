@@ -2,27 +2,25 @@
 #define SNAKE_HH
 
 #include <vector> 
+#include "pos.h"
 
 class Snake{
   private:
     char m_headSymbol;
     char m_tailSymbol;
-    int m_headX;
-    int m_headY;
+    position m_headPos;
     int m_snakeSize;
-    std::vector<int> m_body; // Data Structure to store the Snake Body in memory. m_body[0] == head, else tail
+    std::vector<position> m_body; // Data Structure to store the Snake Body in memory. m_body[0] == head, else tail
     enum m_snakeDirection { STOP = 0, LEFT, RIGHT, UP, DOWN };
     m_snakeDirection dir;
 
   public:
-    Snake(char, char, int, int, int);
+    Snake(char, char, position, int);
     ~Snake();
     char getHeadSymbol();
     char getTailSymbol();
-    int getHeadX();
-    int getHeadY();
-    void setSnakeOnBoard(Board&);
-    void move(SnakeDirection);
-    bool foundFood(Food&);
+    position getHeadPos();
+    std::vector<position> getBody;
+    void move(m_snakeDirection);
 };
 #endif // !SNAKE_HH

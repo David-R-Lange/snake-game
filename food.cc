@@ -2,17 +2,22 @@
 
 using namespace std;
 
-Food::Food(int x, int y) {
-  m_posX = x;
-  m_posY = y;
+Food::Food(position pos, char s) {
+  m_pos = pos;
+  m_symbol = s;
 }
 
 Food::~Food() = default;
 
-int Food::getPosX() {
-  return this->m_posX;
+char Food::getSymbol() {
+  return this->m_symbol;
 }
 
-int Food::getPosY() {
-  return this->m_posY;
+int Food::getPos() {
+  return this->m_pos;
 }
+
+void Food::setPos(position pos) {
+  m_pos = pos;
+}
+

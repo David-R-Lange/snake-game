@@ -1,17 +1,18 @@
-#ifndef FOOD_HH
-#define FOOD_HH
+#ifndef SNAKE-GAME_FOOD_HH
+#define SNAKE-GAME_FOOD_HH
 
-#include <stdlib.h>
+#include "pos.h"
 
 class Food {
   private:
-    int m_posX;
-    int m_posY;
+    char m_symbol;
+    position m_pos;
 
   public:
-    Food(int, int);
+    Food(position , char);
     ~Food();
-    int getPosX();
-    int getPosY();
+    char getSymbol();
+    position getPos();
+    void setPos(position);
 };
-#endif // !FOOD_HH
+#endif // !SNAKE-GAME_FOOD_HH
