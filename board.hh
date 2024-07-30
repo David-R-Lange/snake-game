@@ -7,12 +7,11 @@
 class Board{
   private:
     int m_height, m_width;
-    char m_symbol;
     std::vector<std::vector<char>> m_board;
 
   public:
     Board(void); // default constructor
-    Board(int&, int&, char);
+    Board(int, int);
     ~Board();
     int getHeight();
     int getWidth();

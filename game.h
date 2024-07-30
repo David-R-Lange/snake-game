@@ -5,17 +5,22 @@
 #include "snake.hh"
 #include "food.hh"
 #include "pos.h"
-#include <stdlib.h>
-#include <ncurses.h>
+#include <curses.h>
 
 class Game {
+  private:
+    char m_headSymbol;
+    char m_tailSymbol;
+    char m_foodSymbol;
+    char m_boardSymbol;
 
   public:
     Board m_board = Board(); 
     Snake m_snake = Snake();
     Food m_food = Food();
-    Game(Board&, Snake&, Food&);
+    Game(Board&, Snake&, Food&, char, char, char);
     ~Game();
+    position spawnFoodRand();
     void updateBoard();
     void run();
     bool checkForFood();

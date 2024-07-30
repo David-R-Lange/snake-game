@@ -4,8 +4,7 @@
 Board::Board() {
   m_height = 16;
   m_width = 16;
-  m_symbol = ' ';
-  std::vector<std::vector<char>> tmp(m_height, std::vector<char> (m_width, symbol));
+  std::vector<std::vector<char>> tmp(m_height, std::vector<char> (m_width, ' '));
   for(int i = 0; i < m_height-1; ++i) {
     tmp.at(0).at(i) = '-';
     tmp.at(m_height-1).at(i) = '-';
@@ -17,11 +16,10 @@ Board::Board() {
   m_board = tmp;
 }
 
-Board::Board(int& height, int& width, char symbol) {
+Board::Board(int height, int width) {
   m_height = height;
   m_width = width;
-  m_symbol = symbol;
-  std::vector<std::vector<char>> tmp(height, std::vector<char> (width, symbol));
+  std::vector<std::vector<char>> tmp(height, std::vector<char> (width, ' '));
   for(int i = 0; i < height-1; ++i) {
     tmp.at(0).at(i) = '-';
     tmp.at(height-1).at(i) = '-';
@@ -43,10 +41,6 @@ int Board::getWidth() {
   return this->m_width;
 }
 
-char Board::getSymbol() {
-  return this->m_symbol;
-}
-
 
 void Board::setOnBoard(position pos, char input) {
   this->m_board[pos.x][pos.y] = input;
@@ -62,13 +56,9 @@ void Board::showBoard() {
 }
 
 void Board::clearBoard() {
-  for(int i = 1; i < m_height-1; ++i) {
-    for(int j = 1; j < m_width-1; ++j) {
-
-      if(j == 0 || j == m_width) {
-        m_board.at(i).at(j) = '|';
-      }
-
+  for(int i = 1; i < m_height-2; ++i) {
+    for(int j = 1; j < m_width-2; ++j) {
+      m_board[i][j] = ' ';
     }
   }
 }

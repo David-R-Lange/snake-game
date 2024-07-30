@@ -1,23 +1,18 @@
 #include "food.hh"
 
 Food::Food() {
-  m_pos (2, 4);
-  m_symbol = '*';
+  position tmp (2, 4);
+  m_pos = tmp;
 }
 
 
-Food::Food(position pos, char s) {
+Food::Food(position pos) {
   m_pos = pos;
-  m_symbol = s;
 }
 
 Food::~Food() = default;
 
-char Food::getSymbol() {
-  return this->m_symbol;
-}
-
-int Food::getPos() {
+position Food::getPos() {
   return this->m_pos;
 }
 

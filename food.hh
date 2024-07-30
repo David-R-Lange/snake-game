@@ -5,14 +5,12 @@
 
 class Food {
   private:
-    char m_symbol;
     position m_pos;
 
   public:
     Food(void);
-    Food(position , char);
+    Food(position );
     ~Food();
-    char getSymbol();
     position getPos();
     void setPos(position);
 };
