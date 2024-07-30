@@ -1,6 +1,22 @@
 #include "board.hh"
 #include <iostream>
 
+Board::Board() {
+  m_height = 16;
+  m_width = 16;
+  m_symbol = ' ';
+  std::vector<std::vector<char>> tmp(m_height, std::vector<char> (m_width, symbol));
+  for(int i = 0; i < m_height-1; ++i) {
+    tmp.at(0).at(i) = '-';
+    tmp.at(m_height-1).at(i) = '-';
+  }
+  for(int j = 0; j < m_width-1; ++j) {
+    tmp.at(j).at(0) = '|';
+    tmp.at(j).at(m_width-1) = '|';
+  }
+  m_board = tmp;
+}
+
 Board::Board(int& height, int& width, char symbol) {
   m_height = height;
   m_width = width;

@@ -11,6 +11,7 @@ class Board{
     std::vector<std::vector<char>> m_board;
 
   public:
+    Board(void); // default constructor
     Board(int&, int&, char);
     ~Board();
     int getHeight();

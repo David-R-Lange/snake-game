@@ -1,5 +1,5 @@
-#ifndef SNAKE-GAME_FOOD_HH
-#define SNAKE-GAME_FOOD_HH
+#ifndef SNAKEGAME_FOOD_HH
+#define SNAKEGAME_FOOD_HH
 
 #include "pos.h"
 
@@ -9,6 +9,7 @@ class Food {
     position m_pos;
 
   public:
+    Food(void);
     Food(position , char);
     ~Food();
     char getSymbol();

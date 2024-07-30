@@ -1,5 +1,5 @@
-#ifndef SNAKE-GAME_POS_H
-#define SNAKE-GAME_POS_H
+#ifndef SNAKEGAME_POS_H
+#define SNAKEGAME_POS_H
 
 typedef struct position{
   int x, y;

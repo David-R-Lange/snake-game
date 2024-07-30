@@ -1,5 +1,17 @@
 #include "snake.hh"
 
+Snake::Snake() {
+  m_headSymbol = '@';
+  m_tailSymbol = '0';
+  m_headPos (8, 8);
+  m_snakeSize = 2;
+
+  position tmp(m_headPos.x+1, m_headPos.y+1);
+
+  m_body.push_back(tmp);
+
+  m_headPos = m_body[0];
+}
 Snake::Snake(char head, char tail, position pos, int len) {
   m_headSymbol = head;
   m_tailSymbol = tail;
@@ -31,7 +43,7 @@ std::vector<position> Snake::getBody() {
   return this->m_body;
 }
 
-void Snake::move(m_snakeDirection dir) {
+void Snake::move(m_snakeDirection dir, bool eatFood) {
 
   position head_tmp(0,0);
 
@@ -48,10 +60,10 @@ void Snake::move(m_snakeDirection dir) {
     case DOWN:
       this->head_tmp.y = 1;
       break;
-    case STOP:
+    default:
       break;
   }
-
+  
   // update the snake head info
   position head(0,0);
 
@@ -65,4 +77,3 @@ void Snake::move(m_snakeDirection dir) {
   m_headPos = head;
   body[0] = head;
 }
-

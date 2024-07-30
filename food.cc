@@ -1,6 +1,10 @@
 #include "food.hh"
 
-using namespace std;
+Food::Food() {
+  m_pos (2, 4);
+  m_symbol = '*';
+}
+
 
 Food::Food(position pos, char s) {
   m_pos = pos;
