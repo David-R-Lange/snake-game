@@ -7,16 +7,16 @@
 class Snake{
   private:
     position m_headPos;
-    int m_snakeSize;
+    size_t m_snakeSize;
     std::deque<position> m_body; // Data Structure to store the Snake Body in memory. m_body[0] == head, else tail
 
   public:
     Snake(void); // default constructor
-    Snake(position, int);
+    Snake(position, size_t);
     ~Snake();
     position getHeadPos();
     std::deque<position> getBody();
-    int getLength();
+    size_t getLength();
     void move(int, bool);
 };
 #endif // !SNAKE_HH

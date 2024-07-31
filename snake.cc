@@ -9,7 +9,7 @@ Snake::Snake() {
   m_headPos = m_body[0];
 }
 
-Snake::Snake(position pos, int len) {
+Snake::Snake(position pos, size_t len) {
   m_headPos = pos;
   m_snakeSize = len;
 
@@ -28,7 +28,7 @@ std::deque<position> Snake::getBody() {
   return this->m_body;
 }
 
-int Snake::getLength() {
+size_t Snake::getLength() {
   return this->m_snakeSize;
 }
 

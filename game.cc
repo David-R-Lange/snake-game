@@ -20,7 +20,7 @@ position Game::spawnFoodRand() {
 void Game::updateBoard() {
   initscr();
   this->m_board.setOnBoard(this->m_snake.getHeadPos(), m_headSymbol);
-  for(int i = 1; i < this->m_snake.getLength(); ++i) {
+  for(size_t i = 1; i < this->m_snake.getLength(); ++i) {
       this->m_board.setOnBoard(this->m_snake.getBody()[i], m_tailSymbol);
   }
   this->m_board.setOnBoard(this->m_food.getPos(), m_foodSymbol);
