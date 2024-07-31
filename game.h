@@ -5,7 +5,9 @@
 #include "snake.hh"
 #include "food.hh"
 #include "pos.h"
-#include <curses.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
 
 class Game {
   private:
@@ -13,12 +15,13 @@ class Game {
     char m_tailSymbol;
     char m_foodSymbol;
     char m_boardSymbol;
+    int m_difficulty;
 
   public:
     Board m_board = Board(); 
     Snake m_snake = Snake();
     Food m_food = Food();
-    Game(Board&, Snake&, Food&, char, char, char);
+    Game(Board&, Snake&, Food&, char, char, char, int);
     ~Game();
     position spawnFoodRand();
     void updateBoard();

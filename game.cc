@@ -1,12 +1,13 @@
 #include "game.h"
 
-Game::Game(Board& b, Snake& s, Food& f, char hS, char tS, char fS) {
+Game::Game(Board& b, Snake& s, Food& f, char hS, char tS, char fS, int dif) {
   m_board = Board(b.getHeight(), b.getWidth());
   m_snake = Snake(s.getHeadPos(), s.getLength());
   m_food = Food(f.getPos());
   m_headSymbol = hS;
   m_tailSymbol = tS;
   m_foodSymbol = fS;
+  m_difficulty = dif;
 }
 
 Game::~Game() = default;
@@ -18,7 +19,6 @@ position Game::spawnFoodRand() {
 }
 
 void Game::updateBoard() {
-  initscr();
   this->m_board.setOnBoard(this->m_snake.getHeadPos(), m_headSymbol);
   for(size_t i = 1; i < this->m_snake.getLength(); ++i) {
       this->m_board.setOnBoard(this->m_snake.getBody()[i], m_tailSymbol);
@@ -27,18 +27,18 @@ void Game::updateBoard() {
 }
 
 void Game::run() {  
-  curs_set(0);
-  this->updateBoard();
   bool lostFlag = false;
-  int userInput = 0;
+  int userInput = 75;
 
   while (!lostFlag) {
-    userInput = getch();
+    system("clear");
+    this->m_board.showBoard();
+    // userInput = getPlayerInput();
     this->m_snake.move(userInput, checkForFood());
-    refresh();
+    this->updateBoard();
     lostFlag = checkForLoss();
+    sleep(m_difficulty);
   }
-  endwin();
 }
 
 bool Game::checkForFood() {
