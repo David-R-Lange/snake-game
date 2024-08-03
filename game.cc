@@ -5,6 +5,7 @@ Game::Game(Snake& s, char sSym, char fS, uint32_t dif) {
   cbreak();
   noecho();
   curs_set(0);
+  keypad();
   m_snake = Snake(s.getHeadPos(), s.getLength());
   m_snakeSymbol = sSym;
   m_foodSymbol = fS;
