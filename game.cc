@@ -45,9 +45,9 @@ bool Game::checkForFood() {
 
 bool Game::checkForLoss() {
   if(this->m_snake.getHeadPos().x == 0 || 
-    this->m_snake.getHeadPos().x == this->m_board.getHeight() ||
-    this->m_snake.getHeadPos().y == 0 || 
-    this->m_snake.getHeadPos().y == this->m_board.getWidth()
+    //this->m_snake.getHeadPos().x == this->m_board.getHeight() ||
+    this->m_snake.getHeadPos().y == 0 // || 
+    //this->m_snake.getHeadPos().y == this->m_board.getWidth()
     ) {
       return true;
     }

@@ -1,7 +1,7 @@
 #ifndef SNAKEGAME_POS_H
 #define SNAKEGAME_POS_H
 
-#include <stdint.h>
+#include <cstdint>
 
 typedef struct position{
   uint32_t x, y;
