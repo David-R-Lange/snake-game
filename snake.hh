@@ -3,6 +3,7 @@
 
 #include <deque>
 #include "pos.h"
+#include <ncurses.h>
 
 class Snake{
   private:
@@ -15,8 +16,11 @@ class Snake{
     Snake(position, size_t);
     ~Snake();
     position getHeadPos();
+    void setHeadPos(position);
     std::deque<position> getBody();
+    void setBody(std::deque<position>);
     size_t getLength();
+    void setLength(size_t);
     void move(int, bool);
 };
 #endif // !SNAKE_HH

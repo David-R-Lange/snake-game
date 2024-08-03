@@ -1,16 +1,20 @@
 #include "game.h"
 
-Game::Game(Board& b, Snake& s, Food& f, char hS, char tS, char fS, int dif) {
-  m_board = Board(b.getHeight(), b.getWidth());
+Game::Game(Snake& s, char sSym, char fS, uint32_t dif) {
+  initscr();
+  cbreak();
+  noecho();
+  curs_set(0);
   m_snake = Snake(s.getHeadPos(), s.getLength());
-  m_food = Food(f.getPos());
-  m_headSymbol = hS;
-  m_tailSymbol = tS;
+  m_snakeSymbol = sSym;
   m_foodSymbol = fS;
   m_difficulty = dif;
 }
 
-Game::~Game() = default;
+Game::~Game() {
+  curs_set(1);
+  endwin();
+} 
 
 position Game::spawnFoodRand() {
   position tmp (0, 0);
@@ -18,31 +22,22 @@ position Game::spawnFoodRand() {
   return tmp;
 }
 
-void Game::updateBoard() {
-  this->m_board.setOnBoard(this->m_snake.getHeadPos(), m_headSymbol);
-  for(size_t i = 1; i < this->m_snake.getLength(); ++i) {
-      this->m_board.setOnBoard(this->m_snake.getBody()[i], m_tailSymbol);
-  }
-  this->m_board.setOnBoard(this->m_food.getPos(), m_foodSymbol);
-}
-
 void Game::run() {  
   bool lostFlag = false;
-  int userInput = 75;
+  uint32_t userInput = 0;
 
   while (!lostFlag) {
     system("clear");
-    this->m_board.showBoard();
-    // userInput = getPlayerInput();
+    // this->m_board.showBoard();
+    userInput = getch();
     this->m_snake.move(userInput, checkForFood());
-    this->updateBoard();
     lostFlag = checkForLoss();
     sleep(m_difficulty);
   }
 }
 
 bool Game::checkForFood() {
-  if(this->m_food.getPos() == this->m_snake.getHeadPos()) {
+  if(this->m_food == this->m_snake.getHeadPos()) {
     return true;
   }
   return false;

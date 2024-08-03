@@ -24,12 +24,24 @@ position Snake::getHeadPos() {
   return this->m_headPos;
 }
 
+void Snake::setHeadPos(position pos) {
+  this->m_headPos = pos;
+}
+
 std::deque<position> Snake::getBody() {
   return this->m_body;
 }
 
+void Snake::setBody(std::deque<position> bod) {
+  this->m_body = bod;
+}
+
 size_t Snake::getLength() {
   return this->m_snakeSize;
+}
+
+void Snake::setLength(size_t size) {
+  this->m_snakeSize = size;
 }
 
 void Snake::move(int dir, bool eatFood) {
@@ -37,16 +49,16 @@ void Snake::move(int dir, bool eatFood) {
   position head_tmp(0,0);
 
   switch (dir) {
-    case 75: // Left
+    case KEY_LEFT: // Left
       head_tmp.x = -1;
       break;
-    case 77: // Right
+    case KEY_RIGHT: // Right
       head_tmp.x = 1;
       break;
-    case 72: // Up
+    case KEY_UP: // Up
       head_tmp.y = -1;
       break;
-    case 80: // Down
+    case KEY_DOWN: // Down
       head_tmp.y = 1;
       break;
     default:

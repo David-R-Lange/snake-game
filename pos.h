@@ -1,10 +1,18 @@
 #ifndef SNAKEGAME_POS_H
 #define SNAKEGAME_POS_H
 
+#include <stdint.h>
+
 typedef struct position{
-  int x, y;
-  position(){}
-  position(int a, int b):x(a),y(b){}
+  uint32_t x, y;
+  position(){
+    x = 0;
+    y = 0;
+  }
+  position(uint32_t a, uint32_t b) {
+    x = a;
+    y = b;
+  }
 }position;
 
 inline bool operator==(position pos1, position pos2) {
