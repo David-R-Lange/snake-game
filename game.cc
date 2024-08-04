@@ -29,12 +29,13 @@ void Game::initGame() {
   getmaxyx(stdscr, this->m_rowCount, this->m_colCount);
   keypad(stdscr, true);
   position headStart (this->m_colCount/2, this->m_rowCount/2);
-  m_snake = Snake(headStart); 
+  m_snake.push_front(headStart); 
 }
 
 void Game::spawnFoodRand() {
-  position tmp (rand()%this->m_colCount+1, rand()%this->m_rowCount+1);
-  mvaddch(tmp.y, tmp.x, this->m_foodSymbol);
+    position tmp (rand()%this->m_colCount+1, rand()%this->m_rowCount+1);
+
+    mvaddch(tmp.y, tmp.x, this->m_foodSymbol);
   this->m_food = tmp;
 }
 
@@ -61,10 +62,9 @@ void Game::drawBoard() {
 }
 
 void Game::drawSnake() {
-  for(auto itr = this->m_snake.getBody().begin(); itr != this->m_snake.getBody().end(); ++itr) {
+  for(auto itr = this->m_snake.begin(); itr != this->m_snake.end(); ++itr) {
     mvaddch((*itr).y, (*itr).x, this->m_snakeSymbol);
   }
-  refresh();
 }
 
 void Game::printScore() {
@@ -77,9 +77,9 @@ void Game::run() {
   while (true) {
     this->m_userInput = getch();
     gotFood = checkForFood();
-    this->m_snake.move(this->m_userInput, gotFood);
+    moveSnake(gotFood);
     if(!gotFood) {
-      move(m_snake.getBody()[m_snake.getBody().size()-1].y, m_snake.getBody()[m_snake.getBody().size()-1].x);
+      move(m_snake[m_snake.size()-1].y, m_snake[m_snake.size()-1].x);
       addch(' ');
       refresh();
     }
@@ -103,19 +103,60 @@ void Game::run() {
 }
 
 bool Game::checkForFood() {
-  if(this->m_food == this->m_snake.getHeadPos()) {
+  if(this->m_food == this->m_snake[0]) {
     return true;
   }
   return false;
 }
 
 bool Game::checkForLoss() {
-  if(this->m_snake.getHeadPos().x == 0 || 
-    this->m_snake.getHeadPos().x == this->m_rowCount ||
-    this->m_snake.getHeadPos().y == 0 || 
-    this->m_snake.getHeadPos().y == this->m_colCount
+  if(this->m_snake[0].x == 0 || 
+    this->m_snake[0].x == this->m_rowCount ||
+    this->m_snake[0].y == 0 || 
+    this->m_snake[0].y == this->m_colCount
     ) {
       return true;
     }
   return false;
+}
+
+void Game::moveSnake(bool gotFood) {
+  position head_tmp(0,0);
+
+  switch (this->m_userInput) {
+    case 97: // a
+    case 65: // A
+    case KEY_LEFT:
+      head_tmp.x = -1;
+      break;
+    case 100: // d
+    case 68: // D
+    case KEY_RIGHT:
+      head_tmp.x = 1;
+      break;
+    case 119: // w
+    case 87: // W
+    case KEY_UP:
+      head_tmp.y = -1;
+      break;
+    case 115: // s
+    case 83: // S
+    case KEY_DOWN:
+      head_tmp.y = 1;
+      break;
+    default:
+      break;
+  }
+  
+  position new_head(0,0);
+  new_head.x = m_snake[0].x + head_tmp.x;
+  new_head.y = m_snake[0].y + head_tmp.y;
+  this->m_snake.push_front(new_head);
+
+  if(!gotFood) {
+    move(m_snake[m_snake.size()-1].y, m_snake[m_snake.size()-1].x);
+    this->m_snake.pop_back();
+    addch(' ');
+    refresh();
+  }
 }
