@@ -1,18 +1,10 @@
 #include "snake.hh"
 
 Snake::Snake() {
-  position tmp (8, 8);
-  m_snakeSize = 2;
-
-  m_body.push_back(tmp);
-
-  m_headPos = m_body[0];
 }
 
-Snake::Snake(position pos, size_t len) {
+Snake::Snake(position pos) {
   m_headPos = pos;
-  m_snakeSize = len;
-
   m_body.push_front(pos);
 
   m_headPos = m_body[0];
@@ -28,20 +20,8 @@ void Snake::setHeadPos(position pos) {
   this->m_headPos = pos;
 }
 
-std::deque<position> Snake::getBody() {
+std::deque<position>& Snake::getBody() {
   return this->m_body;
-}
-
-void Snake::setBody(std::deque<position> bod) {
-  this->m_body = bod;
-}
-
-size_t Snake::getLength() {
-  return this->m_snakeSize;
-}
-
-void Snake::setLength(size_t size) {
-  this->m_snakeSize = size;
 }
 
 void Snake::move(int dir, bool eatFood) {
