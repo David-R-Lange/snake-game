@@ -4,10 +4,10 @@ Snake::Snake() {
 }
 
 Snake::Snake(position pos) {
-  m_headPos = pos;
-  m_body.push_front(pos);
+  this->m_headPos = pos;
+  this->m_body.push_front(pos);
 
-  m_headPos = m_body[0];
+  this->m_headPos = this->m_body[0];
 }
 
 Snake::~Snake() = default;
@@ -29,27 +29,37 @@ void Snake::move(int dir, bool eatFood) {
   position head_tmp(0,0);
 
   switch (dir) {
-    case KEY_LEFT: // Left
+    case 97: // a
+    case 65: // A
+    case KEY_LEFT:
       head_tmp.x = -1;
       break;
-    case KEY_RIGHT: // Right
+    case 100: // d
+    case 68: // D
+    case KEY_RIGHT:
       head_tmp.x = 1;
       break;
-    case KEY_UP: // Up
+    case 119: // w
+    case 87: // W
+    case KEY_UP:
       head_tmp.y = -1;
       break;
-    case KEY_DOWN: // Down
+    case 115: // s
+    case 83: // S
+    case KEY_DOWN:
       head_tmp.y = 1;
       break;
     default:
       break;
   }
   
-  m_headPos += head_tmp;
-  m_body.push_front(m_headPos);
+  position new_head(0,0);
+  new_head.x = m_body[0].x + head_tmp.x;
+  new_head.y = m_body[0].y + head_tmp.y;
+  this->m_body.push_front(new_head);
 
   if(!eatFood) {
-    m_body.pop_back();
+    this->m_body.pop_back();
   }
-  m_headPos = m_body[0];
+  this->m_headPos = this->m_body[0];
 }

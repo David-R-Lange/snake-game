@@ -1,8 +1,7 @@
 #include "game.h"
 
 int main() {
-  int difficulty = 11000;
-  
+  uint32_t difficulty = 110;
 
   Game game('X', '*', difficulty);
   game.run();

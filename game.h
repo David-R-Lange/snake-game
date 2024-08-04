@@ -12,8 +12,7 @@ class Game {
   private:
     char m_snakeSymbol;
     char m_foodSymbol;
-    bool m_lostFlag;
-    uint32_t m_userInput;
+    char m_userInput;
     uint32_t m_difficulty;
     uint32_t m_rowCount;
     uint32_t m_colCount;
