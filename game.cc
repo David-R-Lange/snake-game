@@ -88,9 +88,11 @@ void Game::run() {
     }
   
     if(gotFood) {
+      this->m_score += 100;
       spawnFoodRand();
     }
 
+    printScore();
     drawSnake();
     refresh();
     if(checkForLoss()) {
