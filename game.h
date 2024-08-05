@@ -3,8 +3,6 @@
 
 #include <deque>
 #include <ncurses.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
 #include <random>
 #include <ctime>
@@ -17,19 +15,21 @@ class Game {
     char m_foodSymbol;
     int m_userInput;
     uint32_t m_difficulty;
-    uint32_t m_rowCount;
-    uint32_t m_colCount;
+    int m_row;
+    int m_col;
     uint32_t m_score;
     position m_food;
     std::deque<position> m_snake;
+    enum m_direction {UP, DOWN, LEFT, RIGHT};
+    m_direction m_dir;
     
     void initGame();
     void spawnFoodRand();
-    void drawBoard();
-    void drawSnake();
-    void printScore();
-    bool checkForFood();
-    bool checkForLoss();
+    void drawBoard() const;
+    void drawSnake() const;
+    void printScore() const;
+    [[nodiscard]] bool checkForFood() const;
+    [[nodiscard]] bool checkForLoss() const;
     void moveSnake(bool);
 
   public:
@@ -38,4 +38,4 @@ class Game {
     void run();
 };
 
-#endif // !SNAKE-GAME_GAME_H
+#endif // !SNAKEGAME_GAME_H
