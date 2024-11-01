@@ -39,7 +39,8 @@ void Game::initGame() {
 }
 
 void Game::spawnFoodRand() {
-  position tmp (5 + (rand()%m_col), 5 + (rand()%m_row));
+
+  position tmp (5 + (rand()%m_col-2), 5 + (rand()%m_row-2));
   mvaddch(tmp.y, tmp.x, m_foodSymbol);
   m_food = tmp;
 }
